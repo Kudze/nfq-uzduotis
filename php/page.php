@@ -8,8 +8,7 @@ class Page {
 	public static function render($pageName) {
 
 		self::$pageName = $pageName;
-		if(is_null(self::$pageName) || !Page::_doesTemplateExist(self::$pageName)) self::$pageName = 'index';
-
+		if(is_null(self::$pageName) || !Page::_doesTemplateExist(self::$pageName . "_body")) self::$pageName = 'index';
 		Page::_loadTemplate('html_page');
 
 	}
