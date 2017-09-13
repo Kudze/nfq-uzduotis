@@ -25,6 +25,6 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="design/js/bootstrap.min.js"></script>
-    <script src=<?php echo '"design/js/design.js"'; ?>></script>
+    <script src="design/js/design.js"></script>
   </body>
 </html>
