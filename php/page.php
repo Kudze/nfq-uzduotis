@@ -24,6 +24,9 @@ class Page {
 		
 		if(Page::_doesTemplateExist($template))
 			include_once ($path);
+
+		else
+			echo 'Template was not found';
 					
 	}
 

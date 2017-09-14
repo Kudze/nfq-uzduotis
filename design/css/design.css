@@ -1,3 +1,4 @@
+/* -- Background -- */
 body {
 
     background-image: url('../images/background.jpg');
@@ -7,6 +8,7 @@ body {
 
 }
 
+/* -- Some custom Bootstrap colors -- */
 .bg-dark {
 
     color: #fff;
@@ -20,6 +22,7 @@ body {
     
 }
 
+/* -- Spacing -- */
 .spacer {
     
     height: 20vh;
@@ -38,6 +41,22 @@ body {
 
 }
 
+.main-container {
+    
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 5%;
+    padding-right: 5%;
+    
+}
+    
+.end-container {
+    
+    height: 20px;
+    
+}
+
+/* -- Classes for text alginment -- */
 .left {
     text-align: left;
 }
@@ -50,21 +69,7 @@ body {
     text-align: right;
 }
 
-.main-container {
-
-    padding-top: 20px;
-    padding-bottom: 20px;
-    padding-left: 5%;
-    padding-right: 5%;
-
-}
-
-.end-container {
-
-    height: 20px;
-
-}
-
+/* Bootstrap Media Alignment and compatability with font-awesome */
 .media.left i {
 
     margin-right: 20px;
@@ -77,8 +82,10 @@ body {
 
 }
 
+/* Card Design */
 #products-container .card {
     
+    position: relative;
     display: inline-block;
     width: 200px;
     height: 300px;
@@ -88,5 +95,22 @@ body {
     padding: 15px;
 
     background-color: rgba(0, 0, 0, 0.2);
+
+}
+
+#products-container .bottom {
+
+    position: absolute;
+    align-self: center;
+
+    bottom: 20px;
+    left: 50%;
+
+}
+
+#products-container .bottom .btn {
+
+    position: relative;
+    left: -50%;
 
 }
