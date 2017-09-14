@@ -7,7 +7,7 @@ class Database {
 	public static function connect($ip, $database, $username, $password) {
 
 		try {
-		    self::$connection = new PDO("mysql:host=$ip;dbname=$database", $username, $password);
+		    self::$connection = new PDO("mysql:host=$ip;dbname=$database;charset=utf8", $username, $password);
 		}
 		catch(PDOException $e)
 		{
