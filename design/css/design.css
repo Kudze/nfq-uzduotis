@@ -114,3 +114,34 @@ body {
     left: -50%;
 
 }
+
+/* -- Pagination -- */
+.pagination {
+    display: inline-flex;
+}
+
+.page-link {
+
+    transition: background-color linear 80ms;
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(0, 0, 0, 0.125);
+
+    color: #fff;
+
+}
+
+.page-link:hover {
+
+    transition: background-color linear 80ms;
+    background-color: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(0, 0, 0, 0.125);
+
+    color: #fff;
+
+}
+
+.page-link.active {
+
+    background-color: rgba(0, 0, 0, 0.6);
+
+}

@@ -23,4 +23,30 @@
         ';
 
     }
+
+    function _renderProductsTop() {
+
+        echo '
+            <center>
+                <ul class="pagination">
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Praeitas">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Praeitas</span>
+                    </a>
+                </li>
+                <li class="page-item"><a class="page-link active" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Kitas">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Kitas</span>
+                    </a>
+                </li>
+                </ul>
+            </center>
+        ';
+
+    }
 ?>

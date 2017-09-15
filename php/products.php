@@ -4,6 +4,9 @@ class ProductManager {
 
     public static function renderProductsList() {
 
+        Page::_loadTemplate("product");
+        _renderProductsTop();
+
         $products = self::_fetchProductsList();
         foreach($products as $product)
             $product->render();
@@ -53,7 +56,6 @@ class Product {
 
     function render() {
 
-        Page::_loadTemplate("product");
         _renderProduct($this);
 
     }
