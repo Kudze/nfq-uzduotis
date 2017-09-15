@@ -180,16 +180,33 @@ body {
 
 @media screen and (max-width: 600px) {
     
-        .search-form {
-            display: block;
-        }
-    
+    .search-form-wpg {
+        display: block;
     }
+    
+}
 
 @media screen and (min-width: 600px) {
 
-    .search-form {
+    .search-form-wpg {
         margin-right: 10%;
     }
+
+}
+
+/* -- Alerts -- */
+
+.alert {
+
+    min-width: 200px;
+    width: 25%;
+
+}
+
+.alert-danger {
+
+    color: #D44D5D;
+    border-color: #D44D5D;
+    background-color: rgba(114, 28, 36, 0.2);
 
 }
