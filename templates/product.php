@@ -26,11 +26,21 @@
 
     function _renderProductsTop($minPage, $currPage, $maxPage) {
 
+        //Start of top block
+        echo '<center>';
+
+        //Search Form
         echo '
-            <center>
-                <ul class="pagination">
+            <form class="inline-form search-form">
+                <input type="text" class="form-control" id="pSearchText" name="pSearchText" placeholder="Paieška">
+                <button type="submit" class="btn btn-outline-success" id="pSearchSubmit" name="pSearchSubmit"><i class="fa fa-search" aria-hidden="true"></i></button>
+            </form>
         ';
 
+        //Start of pagination.
+        echo '<ul class="pagination">';
+
+        //Pagination content
         _renderPageControl(1, $currPage != $minPage ? $currPage - 1 : $maxPage);
               
         for($i = $minPage; $i <= $maxPage; $i++)
@@ -38,10 +48,11 @@
 
         _renderPageControl(0, $currPage != $maxPage ? $currPage + 1 : $minPage);
 
-        echo '
-                </ul>
-            </center>
-        ';
+        //End of pagination
+        echo '</ul>';
+
+        //End of top block.
+        echo '</center>';
 
     }
 

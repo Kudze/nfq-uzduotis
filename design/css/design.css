@@ -146,3 +146,50 @@ body {
     background-color: rgba(0, 0, 0, 0.6);
 
 }
+
+/* -- Search Form -- */
+.search-form {
+    
+    min-width: 200px;
+    width: 25%;
+    display: inline-block;
+    vertical-align: top;
+    margin-bottom: 10px;
+
+}
+
+.search-form .form-control {
+
+    margin-right: 10px;
+    min-width: 140px;
+    width: 70%;
+    display: inline-block;
+    vertical-align: top;
+
+    border: 1px solid #28a745;
+    border-radius: 0.25rem;
+
+}
+
+.search-form .btn {
+
+    width: 40px;
+    vertical-align: top;
+
+}
+
+@media screen and (max-width: 600px) {
+    
+        .search-form {
+            display: block;
+        }
+    
+    }
+
+@media screen and (min-width: 600px) {
+
+    .search-form {
+        margin-right: 10%;
+    }
+
+}
