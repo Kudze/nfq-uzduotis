@@ -57,11 +57,15 @@
 
 <div class="container-fluid main-container center bg-dark2" id="products-container">
 
-    <h4>Norint užsisakyti 3D spausdintuvą jums reikia užpildyti šią formą, o vėliau mes patys su jumis susisieksime!</h3>
-
     <form action="index.php?page=orders" method="post">
 
-    
+        <h4>Norint užsisakyti 3D spausdintuvą už 200&euro; jums reikia užpildyti šią formą, o vėliau mes patys su jumis susisieksime per 5 darbo dienas!</h3>
+
+        <input class="form-control form-control-small first" type="text" id="orderName" name="orderName" placeholder="Vardas">
+        <input class="form-control form-control-small second" type="text" id="orderSurname" name="orderSurname" placeholder="Pavardė"></br>
+        <input class="form-control" type="tel" id="orderPhone" name="orderPhone" placeholder="Telefono numeris">
+        <input class="form-control" type="email" id="orderMail" name="orderMail" placeholder="El. Paštas">
+        <input class="form-control btn btn-outline-success" style="margin-bottom: 0px;" type="submit" id="orderSubmit" name="orderSubmit" value="Užsakyti">
 
     </form>
 
@@ -71,4 +75,4 @@
 
 <div class="spacer"></div>
 
-<div class="container-fluid center bg-dark">Copyright notice</div>
+<div class="container-fluid center bg-dark">No Copyright :). Code available on <a href="https://github.com/Kudze/nfq-uzduotis">GitHub</a>!</div>

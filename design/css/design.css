@@ -210,3 +210,57 @@ body {
     background-color: rgba(114, 28, 36, 0.2);
 
 }
+
+/* -- Forms -- */
+.form-control {
+
+    display: inline-block;
+    width: 70%;
+
+    margin-bottom: 1rem;
+
+}
+
+form {
+    text-align: center;
+}
+
+form h4 {
+    width: 70%;
+    display: inline-block;
+    margin-bottom: 2rem;
+}
+
+@media screen and (max-width: 600px) {
+    
+    .form-control-small {
+        min-width: 200px;
+        width: 70%;
+    }
+
+    .form-control {
+        min-width: 200px;
+    }
+    
+}
+
+@media screen and (min-width: 600px) {
+
+    .form-control {
+        min-width: 440px;
+    }
+
+    .form-control-small.first {
+        margin-right: 6%;
+    }
+
+    .form-control-small.second {
+        margin-left: 0;
+    }
+
+    .form-control-small {
+        min-width: 200px;
+        width: 32%;
+    }
+
+}
