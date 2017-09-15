@@ -17,6 +17,10 @@ class Page {
 		return self::$pageName;
 	}
 
+	public static function getCurrentURL() {
+		return "index.php?page=" . self::$pageName;
+	}
+
 	//----- Util functions.
 	public static function _loadTemplate($template) {
 		

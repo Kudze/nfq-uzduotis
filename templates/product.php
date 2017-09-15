@@ -24,7 +24,7 @@
 
     }
 
-    function _renderProductsTop() {
+    function _renderProductsTop($minPage, $currPage, $maxPage) {
 
         echo '
             <center>
@@ -35,9 +35,15 @@
                     <span class="sr-only">Praeitas</span>
                     </a>
                 </li>
-                <li class="page-item"><a class="page-link active" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
+        ';
+              
+        for($i = $minPage; $i <= $maxPage; $i++)
+            if($i == $currPage)
+                _renderActivePage($i);
+            else
+                -_renderNormalPage($i);
+
+        echo '
                 <li class="page-item">
                     <a class="page-link" href="#" aria-label="Kitas">
                     <span aria-hidden="true">&raquo;</span>
@@ -48,5 +54,13 @@
             </center>
         ';
 
+    }
+
+    function _renderActivePage($pageNum) {
+        echo '<li class="page-item"><span class="page-link active">' . $pageNum . '</span></li>';
+    }
+
+    function _renderNormalPage($pageNum) {
+        echo '<li class="page-item"><a class="page-link" href="' . Page::getCurrentURL() . '&nPage=' . $pageNum . '#products-container">' . $pageNum . '</a></li>';
     }
 ?>

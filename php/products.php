@@ -4,20 +4,36 @@ class ProductManager {
 
     public static function renderProductsList() {
 
-        Page::_loadTemplate("product");
-        _renderProductsTop();
+        $currPage = $_GET["nPage"]; 
+        $maxPage;
+        $products = self::_fetchProductsList(12, $currPage, $maxPage); //12 is good because it does divide with 1, 2, 3, 4 and 6.
 
-        $products = self::_fetchProductsList();
+        Page::_loadTemplate("product");
+        _renderProductsTop(1, $currPage, $maxPage);
+
         foreach($products as $product)
             $product->render();
 
     }
 
-    private static function _fetchProductsList() {
+    private static function _fetchProductsList($itemsPerPage, &$currPage, &$maxPage) {
         $res = array();
 
         try {
-            $stmt = Database::getConnection()->prepare("SELECT * FROM `products`");
+
+            //We get product count from database
+            $stmt = Database::getConnection()->prepare("SELECT COUNT(*) AS 'count' FROM `products` LIMIT 1");
+            $stmt->execute();
+            $itemCount = $stmt->fetch()['count'];
+
+            //Then we process the data.
+            $maxPage = ceil($itemCount / $itemsPerPage);
+            if(!is_numeric($currPage) || $currPage > $maxPage) $currPage = 1; //This should stop any SQL Injection or messing with get values issues.
+
+            //Then we fetch data for the page that we need to show.
+            $stmt = Database::getConnection()->prepare("SELECT * FROM `products` LIMIT :offset, :count");
+            $stmt->bindValue(":offset", ($currPage - 1) * $itemsPerPage, PDO::PARAM_INT);
+            $stmt->bindValue(":count", $itemsPerPage, PDO::PARAM_INT);
             $stmt->execute();
 
             while($row = $stmt->fetch(PDO::FETCH_ASSOC))
