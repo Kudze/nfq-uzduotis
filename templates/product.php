@@ -28,6 +28,9 @@
 
         echo '
             <center>
+        ';
+
+        echo '
                 <ul class="pagination">
                 <li class="page-item">
                     <a class="page-link" href="#" aria-label="Praeitas">
@@ -38,10 +41,7 @@
         ';
               
         for($i = $minPage; $i <= $maxPage; $i++)
-            if($i == $currPage)
-                _renderActivePage($i);
-            else
-                -_renderNormalPage($i);
+            _renderPage($i, $i == $currPage);
 
         echo '
                 <li class="page-item">
@@ -56,11 +56,11 @@
 
     }
 
-    function _renderActivePage($pageNum) {
-        echo '<li class="page-item"><span class="page-link active">' . $pageNum . '</span></li>';
+    function _renderPage($pageNum, $active) {
+        if($active)
+            echo '<li class="page-item"><span class="page-link active">' . $pageNum . '</span></li>';
+        else
+            echo '<li class="page-item"><a class="page-link" href="' . Page::getCurrentURL() . '&pPage=' . $pageNum . '#products-container">' . $pageNum . '</a></li>';
     }
 
-    function _renderNormalPage($pageNum) {
-        echo '<li class="page-item"><a class="page-link" href="' . Page::getCurrentURL() . '&pPage=' . $pageNum . '#products-container">' . $pageNum . '</a></li>';
-    }
 ?>
