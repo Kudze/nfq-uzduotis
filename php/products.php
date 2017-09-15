@@ -4,7 +4,7 @@ class ProductManager {
 
     public static function renderProductsList() {
 
-        $currPage = $_GET["nPage"]; 
+        $currPage = @$_GET["pPage"]; 
         $maxPage;
         $products = self::_fetchProductsList(12, $currPage, $maxPage); //12 is good because it does divide with 1, 2, 3, 4 and 6.
 

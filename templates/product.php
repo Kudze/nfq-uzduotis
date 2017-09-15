@@ -61,6 +61,6 @@
     }
 
     function _renderNormalPage($pageNum) {
-        echo '<li class="page-item"><a class="page-link" href="' . Page::getCurrentURL() . '&nPage=' . $pageNum . '#products-container">' . $pageNum . '</a></li>';
+        echo '<li class="page-item"><a class="page-link" href="' . Page::getCurrentURL() . '&pPage=' . $pageNum . '#products-container">' . $pageNum . '</a></li>';
     }
 ?>
