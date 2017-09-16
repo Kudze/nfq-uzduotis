@@ -1,7 +1,7 @@
 
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
 
-    <a class="navbar-brand" href="#">Items4You</a>
+    <a class="navbar-brand" href="#">Print3D</a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>

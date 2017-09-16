@@ -198,8 +198,9 @@ body {
 
 .alert {
 
+    display: inline-block;
     min-width: 200px;
-    width: 25%;
+    width: 50%;
 
 }
 
@@ -208,6 +209,14 @@ body {
     color: #D44D5D;
     border-color: #D44D5D;
     background-color: rgba(114, 28, 36, 0.2);
+
+}
+
+.alert-success {
+
+    color: #30B44B;
+    border-color: #30B44B;
+    background-color: rgba(21, 87, 36, 0.2);
 
 }
 

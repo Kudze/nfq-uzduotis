@@ -1,8 +1,4 @@
-<?php 
-
-    Page::_loadTemplate("navbar");
-
-?>
+<?php Page::_loadTemplate("navbar"); ?>
 
 <div class="spacer2x"></div>
 
@@ -16,7 +12,7 @@
         <div class="media-body">
             <h4 class="mt-0">Dvigubai trumpesnis spausdinimo laikas, nei konkurentų spausdintuvuose!</h4>
             <font>
-                Print3D spausdintuvai naudoja naują Items4You&trade; materiją, kuri pilnai tinka spausdinimui, bei greičiau stingsta, nei mūsų konkurentų naudojamos medžiagos. 
+                Print3D spausdintuvai naudoja naują Print3D&trade; materiją, kuri pilnai tinka spausdinimui, bei greičiau stingsta, nei mūsų konkurentų naudojamos medžiagos. 
                 Būtent todėl mūsų spausdintuvai yra dvigubai greitesni!
             </font>
         </div>
@@ -27,7 +23,7 @@
     <div class="media-body">
         <h4 class="mt-0">Žymiai pigesnis produktas</h4>
         <font>
-            Kadangi Items4You&trade; materija labiau tinka 3D spausdinimui negu bet kokia kita materija, galėjome iš standartinio 3D spausdintuvo panaikinti kelis komponentus, 
+            Kadangi Print3D&trade; materija labiau tinka 3D spausdinimui negu bet kokia kita materija, galėjome iš standartinio 3D spausdintuvo panaikinti kelis komponentus, 
             taip sumažindami gaminimo kaštus.
         </font>
     </div>
@@ -73,6 +69,4 @@
 
 <div class="container-fluid end-container bg-dark"></div>
 
-<div class="spacer"></div>
-
-<div class="container-fluid center bg-dark">No Copyright :). Code available on <a href="https://github.com/Kudze/nfq-uzduotis">GitHub</a>!</div>
+<?php Page::_loadTemplate("copyright") ?>
