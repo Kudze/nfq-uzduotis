@@ -1,20 +1,18 @@
 <?php
 
-    global $oSearchText, $oCurrPage, $oMinPage, $oMaxPage, $oItems;
-
-    function _renderOrderTablePage($pageNum, $active, $searchText) {
+    function renderOrderTablePage($pageNum, $active) {
         if($active)
             echo '<li class="page-item"><span class="page-link active">' . $pageNum . '</span></li>';
         else
-            echo '<li class="page-item"><a class="page-link" href="' . Page::getCurrentURL() . '&pPage=' . $pageNum . '&pSearch=' . $searchText . '#products-container">' . $pageNum . '</a></li>';
+            echo '<li class="page-item"><a class="page-link" href="' . Page::getCurrentURL() . '&oPage=' . $pageNum . '&oSearch=' . @$_GET['oSearch'] . '#products-container">' . $pageNum . '</a></li>';
     }
     
     //$dir = 0 (right)
     //$dir = 1 (left)
-    function _renderOrderTablePageControl($dir, $pageNum, $searchText) {
+    function renderOrderTablePageControl($dir, $pageNum) {
         echo '
         <li class="page-item">
-            <a class="page-link" href="' . Page::getCurrentURL() . '&pPage=' . $pageNum . '&pSearch=' . $searchText . '#products-container" aria-label="' . ($dir ? 'Praeitas' : 'Kitas') . '">
+            <a class="page-link" href="' . Page::getCurrentURL() . '&oPage=' . $pageNum . '&oSearch=' . @$_GET['oSearch'] . '#products-container" aria-label="' . ($dir ? 'Praeitas' : 'Kitas') . '">
                 <span aria-hidden="true">' . ($dir ? '&laquo;' : '&raquo;') . '</span>
                 <span class="sr-only">' . ($dir ? 'Praeitas' : 'Kitas') . '</span>
             </a>
@@ -31,12 +29,12 @@
     //Pagination content
     //Originally I wanted those to be in template system, but it appears, that I only can use include_once one time :I.
     //So yeah, I still need to figure workaround.
-    _renderOrderTablePageControl(1, $oCurrPage != $oMinPage ? $oCurrPage - 1 : $oMaxPage, $oSearchText);
+    renderOrderTablePageControl(1, OrderManager::$_oCurrentPage != OrderManager::$_oMinPage ? OrderManager::$_oCurrentPage - 1 : OrderManager::$_oMaxPage);
                 
-    for($i = $oMinPage; $i <= $oMaxPage; $i++)
-        _renderOrderTablePage($i, $i == $oCurrPage, $oSearchText);
+    for($i = OrderManager::$_oMinPage; $i <= OrderManager::$_oMaxPage; $i++)
+        renderOrderTablePage($i, $i == OrderManager::$_oCurrentPage);
 
-    _renderOrderTablePageControl(0, $oCurrPage != $oMaxPage ? $oCurrPage + 1 : $oMinPage, $oSearchText);
+    renderOrderTablePageControl(0, OrderManager::$_oCurrentPage != OrderManager::$_oMaxPage ? OrderManager::$_oCurrentPage + 1 : OrderManager::$_oMinPage);
 
 ?>
 
@@ -57,7 +55,7 @@
     <tbody>
         <?php
 
-            foreach($oItems as $oItem)
+            foreach(OrderManager::$_oItems as $oItem)
                 _renderOrderRow($oItem);
 
         ?>
