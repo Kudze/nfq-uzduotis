@@ -14,7 +14,7 @@ class OrderManager {
 
         //Then lets handle all the data from sql.
         self::$_oCurrentPage = @$_GET['oPage'];
-        self::_fetchOrders(20);
+        self::_fetchOrders(12);
 
         //And now we can render all of it.
         Page::_loadTemplate("order_table");
