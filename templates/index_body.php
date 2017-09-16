@@ -61,6 +61,8 @@
         <input class="form-control form-control-small second" type="text" id="orderSurname" name="orderSurname" placeholder="Pavardė"></br>
         <input class="form-control" type="tel" id="orderPhone" name="orderPhone" placeholder="Telefono numeris">
         <input class="form-control" type="email" id="orderMail" name="orderMail" placeholder="El. Paštas">
+        <input class="form-control" type="text" id="orderAddress" name="orderAddress" placeholder="Adresas">
+        <input class="form-control" type="text" id="orderInfo" name="orderInfo" placeholder="Papildoma informacija (Šis laukelis nėra būtinas)">
         <input class="form-control btn btn-outline-success" style="margin-bottom: 0px;" type="submit" id="orderSubmit" name="orderSubmit" value="Užsakyti">
 
     </form>

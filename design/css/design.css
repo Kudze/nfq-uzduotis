@@ -273,3 +273,13 @@ form h4 {
     }
 
 }
+
+/* Misc */
+
+#orders-container {
+
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+
+    min-height: 20vh;
+}
