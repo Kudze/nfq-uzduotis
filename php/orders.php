@@ -61,6 +61,8 @@ class OrderManager {
             $surname = @$_POST['orderSurname'];
             $phone = @$_POST['orderPhone'];
             $email = @$_POST['orderMail'];
+            $address = @$_POST['orderAddress'];
+            $info = @$_POST['orderInfo'];
 
             if(empty($name) || empty($surname) || empty($phone) || empty($email))
                 echo '<center class="alert alert-danger">Vienas arba keli laukeliai buvo neužpildyti!</center>';
@@ -70,8 +72,8 @@ class OrderManager {
 
             else {
 
-                $stmt = Database::getConnection()->prepare("INSERT INTO `orders`(`name`, `surname`, `email`, `phone`) VALUES (?, ?, ?, ?)");
-                $stmt->execute(array($name, $surname, $email, $phone));
+                $stmt = Database::getConnection()->prepare("INSERT INTO `orders`(`name`, `surname`, `email`, `phone`, `address`, `additional`) VALUES (?, ?, ?, ?, ?, ?)");
+                $stmt->execute(array($name, $surname, $email, $phone, $address, $info));
                 
                 echo '<center class="alert alert-success">Jūsų užsakymas buvo sėkmingai pridėtas prie sąrašo!</center>';
 
