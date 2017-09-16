@@ -23,6 +23,9 @@ class OrderManager {
             if(empty($name) || empty($surname) || empty($phone) || empty($email))
                 return '<center class="alert alert-danger">Vienas arba keli laukeliai buvo neužpildyti!</center>';
 
+            else if(!filter_var($email, FILTER_VALIDATE_EMAIL))
+                return '<center class="alert alert-danger">Toks El.Paštas neegzistuoja!</center>';
+
             else {
 
                 $stmt = Database::getConnection()->prepare("INSERT INTO `orders`(`name`, `surname`, `email`, `phone`) VALUES (?, ?, ?, ?)");
