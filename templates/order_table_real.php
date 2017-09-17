@@ -1,5 +1,7 @@
 <?php
 
+    //Originally I wanted those to be in template system, but it appears, that I only can use include_once one time :I.
+    //So yeah, I still need to figure workaround.
     function renderOrderTablePage($pageNum, $active) {
         if($active)
             echo '<li class="page-item"><span class="page-link active">' . $pageNum . '</span></li>';
@@ -18,6 +20,30 @@
             </a>
         </li>
         ';
+    }
+
+    function _renderOrderRow($order, $first = false) {
+        
+        //Counter.
+        global $_nOrderRow;
+        if(!isset($_nOrderRow))
+            $_nOrderRow = ((OrderManager::$_oCurrentPage - 1) * OrderManager::$_oItemsPerPage) + 1;
+        else
+            $_nOrderRow++;
+
+        //Rendering itself.
+        echo '
+            <tr>
+                <th scope="row">' . $_nOrderRow . '</th>
+                <td>' . $order->getName() . '</td>
+                <td>' . $order->getSurname() . '</td>
+                <td>' . $order->getEmail() . '</td>
+                <td>' . $order->getPhone() . '</td>
+                <td>' . $order->getAddress() . '</td>
+                <td>' . $order->getInfo() . '</td>
+            </tr>
+        ';
+        
     }
 
 ?>
