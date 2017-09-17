@@ -57,7 +57,7 @@
 
         <h4>Norint užsisakyti 3D spausdintuvą už 200&euro; jums reikia užpildyti šią formą, o vėliau mes patys su jumis susisieksime per 5 darbo dienas!</h3>
 
-        <?php echo OrderManager::$_oFormError; ?>
+        <?php if(isset(OrderManager::$_oFormError)) echo '<center class="alert alert-danger">' . OrderManager::$_oFormError . '</center></br>'; ?>
 
         <input class="form-control form-control-small first" type="text" id="orderName" name="orderName" placeholder="Vardas">
         <input class="form-control form-control-small second" type="text" id="orderSurname" name="orderSurname" placeholder="Pavardė"></br>

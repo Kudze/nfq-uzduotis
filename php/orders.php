@@ -129,10 +129,10 @@ class OrderManager {
             $info = @$_POST['orderInfo'];
 
             if(empty($name) || empty($surname) || empty($phone) || empty($email))
-                self::$_oFormError = '<center class="alert alert-danger">Vienas arba keli laukeliai buvo neužpildyti!</center></br>';
+                self::$_oFormError = 'Vienas arba keli laukeliai buvo neužpildyti!';
 
             else if(!filter_var($email, FILTER_VALIDATE_EMAIL))
-                self::$_oFormError = '<center class="alert alert-danger">Toks El.Paštas neegzistuoja!</center></br>';
+                self::$_oFormError = 'Toks El.Paštas neegzistuoja!';
 
             else {
 
