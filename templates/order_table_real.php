@@ -95,6 +95,8 @@
 
 </ul>
 
+</br>
+
 <center class="table-parent">
 <table class="table table-inverse">
     <thead>
