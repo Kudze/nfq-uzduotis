@@ -8,6 +8,8 @@
 
 <center class="container-fluid main-container center bg-dark2" id="orders-container">
 
+    <?php if(@$_GET['success']) echo '<center class="alert alert-success">Jūsų užsakymas buvo sėkmingai pridėtas prie sąrašo!</center>'; ?>
+
     <?php OrderManager::renderOrdersList(); ?>
 
 </center>

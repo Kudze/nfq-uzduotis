@@ -53,9 +53,11 @@
 
 <div class="container-fluid main-container center bg-dark2" id="products-container">
 
-    <form action="index.php?page=orders" method="post">
+    <form action="index.php" method="post">
 
         <h4>Norint užsisakyti 3D spausdintuvą už 200&euro; jums reikia užpildyti šią formą, o vėliau mes patys su jumis susisieksime per 5 darbo dienas!</h3>
+
+        <?php echo OrderManager::$_oFormError; ?>
 
         <input class="form-control form-control-small first" type="text" id="orderName" name="orderName" placeholder="Vardas">
         <input class="form-control form-control-small second" type="text" id="orderSurname" name="orderSurname" placeholder="Pavardė"></br>

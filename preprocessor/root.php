@@ -1,1 +1,3 @@
 <?php
+
+OrderManager::handleOrderForm();

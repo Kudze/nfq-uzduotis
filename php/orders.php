@@ -7,11 +7,9 @@ class OrderManager {
     public static $_oMaxPage;
     public static $_oItems;
     public static $_oItemsPerPage;
+    public static $_oFormError;
 
     public static function renderOrdersList() {
-
-       //First lets check if there was any form submitted from main.
-       self::_handleOrderForm();
 
         //Then lets handle all the data from sql.
         self::$_oCurrentPage = @$_GET['oPage'];
@@ -117,7 +115,8 @@ class OrderManager {
 
     }
 
-    private static function _handleOrderForm() {
+    //Called from preprocessor
+    public static function handleOrderForm() {
 
         if(@$_POST['orderSubmit']) {
 
@@ -129,17 +128,17 @@ class OrderManager {
             $info = @$_POST['orderInfo'];
 
             if(empty($name) || empty($surname) || empty($phone) || empty($email))
-                echo '<center class="alert alert-danger">Vienas arba keli laukeliai buvo neužpildyti!</center>';
+                self::$_oFormError = '<center class="alert alert-danger">Vienas arba keli laukeliai buvo neužpildyti!</center></br>';
 
             else if(!filter_var($email, FILTER_VALIDATE_EMAIL))
-                echo '<center class="alert alert-danger">Toks El.Paštas neegzistuoja!</center>';
+                self::$_oFormError = '<center class="alert alert-danger">Toks El.Paštas neegzistuoja!</center></br>';
 
             else {
 
                 $stmt = Database::getConnection()->prepare("INSERT INTO `orders`(`name`, `surname`, `email`, `phone`, `address`, `additional`) VALUES (?, ?, ?, ?, ?, ?)");
                 $stmt->execute(array($name, $surname, $email, $phone, $address, $info));
                 
-                echo '<center class="alert alert-success">Jūsų užsakymas buvo sėkmingai pridėtas prie sąrašo!</center>';
+                header("Location: index.php?page=orders&success=1");
 
             }
 
