@@ -42,4 +42,24 @@ class Page {
 
 	}
 
+	public static function _loadPreprocessor($preprocessor) {
+		
+		$path = dirname(__FILE__) . '/../preprocessor/' . $preprocessor . '.php';
+		
+		if(Page::_doesPreprocessorExist($preprocessor))
+			include_once ($path);
+
+		else
+			echo 'Preprocessor was not found';
+					
+	}
+
+	public static function _doesPreprocessorExist($preprocessor) {
+
+		$path = dirname(__FILE__) . '/../preprocessor/' . $preprocessor . '.php';
+		
+		return file_exists($path) && is_readable($path);
+
+	}
+
 };

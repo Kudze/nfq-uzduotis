@@ -1,3 +1,5 @@
+<?php Page::_loadPreprocessor('root'); ?>
+
 <!DOCTYPE html>
 
 <html lang="lt">
