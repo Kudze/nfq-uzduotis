@@ -283,6 +283,18 @@ form h4 {
 
 }
 
+th {
+
+    vertical-align: middle !important;
+
+}
+
+td {
+
+    vertical-align: top !important;
+    
+}
+
 /* Misc */
 
 #orders-container {
