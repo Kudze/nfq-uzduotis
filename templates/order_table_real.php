@@ -36,13 +36,13 @@
             $colStat = @$_GET['oOrWhich'] == $_nOrWhich ? @$_GET['oOrType'] : 0;
 
             if($colStat == 0)
-                echo '<th><a href="' . Page::getCurrentURL() . '&oPage=' . @$_GET['oPage'] . '&oSearch=' . @$_GET['oSearch'] . '&oOrType=1&oOrWhich=' . $_nOrWhich . '#orders-container">' . $title . '</a></th>';
+                echo '<th><a href="' . Page::getCurrentURL() . '&oSearch=' . @$_GET['oSearch'] . '&oOrType=1&oOrWhich=' . $_nOrWhich . '#orders-container">' . $title . '</a></th>';
             
             else if($colStat == 1)
-                echo '<th><a href="' . Page::getCurrentURL() . '&oPage=' . @$_GET['oPage'] . '&oSearch=' . @$_GET['oSearch'] . '&oOrType=2&oOrWhich=' . $_nOrWhich . '#orders-container">' . $title . '<i class="fa fa-sort-desc" aria-hidden="true"></i></a></th>';
+                echo '<th><a href="' . Page::getCurrentURL() . '&oSearch=' . @$_GET['oSearch'] . '&oOrType=2&oOrWhich=' . $_nOrWhich . '#orders-container">' . $title . '<i class="fa fa-sort-desc" aria-hidden="true"></i></a></th>';
         
             else if($colStat == 2)
-                echo '<th><a href="' . Page::getCurrentURL() . '&oPage=' . @$_GET['oPage'] . '&oSearch=' . @$_GET['oSearch'] . '&oOrType=0&oOrWhich=' . $_nOrWhich . '#orders-container">' . $title . '<i class="fa fa-sort-asc" aria-hidden="true"></i></a></th>';
+                echo '<th><a href="' . Page::getCurrentURL() . '&oSearch=' . @$_GET['oSearch'] . '&oOrType=0&oOrWhich=' . $_nOrWhich . '#orders-container">' . $title . '<i class="fa fa-sort-asc" aria-hidden="true"></i></a></th>';
         
         }
 
