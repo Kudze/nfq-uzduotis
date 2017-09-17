@@ -127,14 +127,54 @@ class OrderManager {
             $email = @$_POST['orderMail'];
             $address = @$_POST['orderAddress'];
             $info = @$_POST['orderInfo'];
+            
+            //Name
+            if(empty($name))
+                self::$_oFormError .= "* Privalomas vardo laukelis buvo paliktas tuščias!</br>";
 
-            if(empty($name) || empty($surname) || empty($phone) || empty($email))
-                self::$_oFormError = 'Vienas arba keli laukeliai buvo neužpildyti!';
+            else if(strlen($name) > 128)
+                self::$_oFormError .= '* Tavo vardas yra per ilgas!</br>';
+
+            //Surname
+            if(empty($surname))
+                self::$_oFormError .= "* Privalomas pavardės laukelis buvo paliktas tuščias!</br>";
+
+            else if(strlen($surname) > 128)
+                self::$_oFormError .= '* Tavo pavardė yra per ilga!</br>';
+
+            //Email
+            if(empty($email))
+                self::$_oFormError .= "* Privalomas el. pašto laukelis buvo paliktas tuščias!</br>";
+
+            else if(strlen($email) > 512)
+                self::$_oFormError .= '* Tavo el. paštas yra per ilgas!</br>';
 
             else if(!filter_var($email, FILTER_VALIDATE_EMAIL))
-                self::$_oFormError = 'Toks El.Paštas neegzistuoja!';
+                self::$_oFormError .= '* Toks El.Paštas neegzistuoja!</br>';
 
-            else {
+            //Phone
+            if(empty($phone))
+                self::$_oFormError .= "* Privalomas telefono laukelis buvo paliktas tuščias!</br>";
+
+            else if(strlen($phone) > 20)
+                self::$_oFormError .= '* Tavo telefono numeris yra per ilgas!</br>';
+
+            else if(preg_match('/[^0-9+]/', $phone))
+                self::$_oFormError .= ' * Tavo telefono numeryje yra neleidžiamų simbolių! (Leidžiami simboliai: 0-9, +)';
+
+            //Address
+            if(empty($address))
+                self::$_oFormError .= "* Privalomas adreso laukelis buvo paliktas tuščias!</br>";
+
+            else if(strlen($address) > 256)
+                self::$_oFormError .= '* Tavo adresas yra per ilgas!</br>';
+
+            //Info
+            if(strlen($info) > 512)
+                self::$_oFormError .= '* Tavo papildoma informacija yra per ilga!</br>';
+
+            //If no errors -----------------------------------------------------
+            if(!isset(self::$_oFormError)) {
 
                 $stmt = Database::getConnection()->prepare("INSERT INTO `orders`(`name`, `surname`, `email`, `phone`, `address`, `additional`) VALUES (?, ?, ?, ?, ?, ?)");
                 $stmt->execute(array($name, $surname, $email, $phone, $address, $info));
