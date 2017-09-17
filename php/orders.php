@@ -6,6 +6,7 @@ class OrderManager {
     public static $_oMinPage;
     public static $_oMaxPage;
     public static $_oItems;
+    public static $_oItemsPerPage;
 
     public static function renderOrdersList() {
 
@@ -14,14 +15,15 @@ class OrderManager {
 
         //Then lets handle all the data from sql.
         self::$_oCurrentPage = @$_GET['oPage'];
-        self::_fetchOrders(12);
+        self::$_oItemsPerPage = 12;
+        self::_fetchOrders();
 
         //And now we can render all of it.
         Page::_loadTemplate("order_table");
 
     }
 
-    private static function _fetchOrders($itemsPerPage) {
+    private static function _fetchOrders() {
         self::$_oMinPage = 1;
         self::$_oItems = array();
 
@@ -33,12 +35,12 @@ class OrderManager {
             $itemCount = $stmt->fetch()['count'];
 
             //Then we process the data.
-            self::$_oMaxPage = ceil($itemCount / $itemsPerPage);
+            self::$_oMaxPage = ceil($itemCount / self::$_oItemsPerPage);
             if(!is_numeric(self::$_oCurrentPage) || self::$_oCurrentPage > self::$_oMaxPage) self::$_oCurrentPage = 1; //This should stop any SQL Injection or messing with get values issues.
 
             //Then we fetch data for the page that we need to show.
             $stmt = Database::getConnection()->prepare("SELECT * FROM `orders` WHERE `name` LIKE ? LIMIT ?, ?");
-            $stmt->execute(array("%" . @$_GET['oSearch'] . "%", (self::$_oCurrentPage - 1) * $itemsPerPage, $itemsPerPage));
+            $stmt->execute(array("%" . @$_GET['oSearch'] . "%", (self::$_oCurrentPage - 1) * self::$_oItemsPerPage, self::$_oItemsPerPage));
 
             while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 array_push(self::$_oItems, new Order($row));

@@ -7,7 +7,7 @@
         //Counter.
         global $_nOrderRow;
         if(!isset($_nOrderRow))
-            $_nOrderRow = 1;
+            $_nOrderRow = ((OrderManager::$_oCurrentPage - 1) * OrderManager::$_oItemsPerPage) + 1;
         else
             $_nOrderRow++;
 
