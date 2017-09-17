@@ -49,6 +49,7 @@ class OrderManager {
             //Then we process the data.
             self::$_oMaxPage = ceil($itemCount / self::$_oItemsPerPage);
             if(!is_numeric(self::$_oCurrentPage) || self::$_oCurrentPage > self::$_oMaxPage) self::$_oCurrentPage = 1; //This should stop any SQL Injection or messing with get values issues.
+            if(@$_GET['success']) self::$_oCurrentPage = self::$_oMaxPage;
 
             //Lets process order part
             $orderType = @$_GET['oOrType'];
