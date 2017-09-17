@@ -29,18 +29,48 @@ class OrderManager {
 
         try {
 
-            //We get product count from database
-            $stmt = Database::getConnection()->prepare("SELECT COUNT(*) AS 'count' FROM `orders` WHERE `name` LIKE ? LIMIT 1");
-            $stmt->execute(array("%" . @$_GET['oSearch'] . "%"));
+            //We get product count from database (This Query is performance killer, but db is small so it'll do)
+            $stmt = Database::getConnection()->prepare("SELECT COUNT(*) AS 'count' FROM `orders` WHERE 
+                                                                `name` LIKE ? OR
+                                                                `surname` LIKE ? OR
+                                                                `email` LIKE ? OR
+                                                                `address` LIKE ? OR
+                                                                `phone` LIKE ? OR
+                                                                `additional` LIKE ?
+                                                                LIMIT 1");
+            $stmt->execute(array(
+                "%" . @$_GET['oSearch'] . "%",
+                "%" . @$_GET['oSearch'] . "%",
+                "%" . @$_GET['oSearch'] . "%",
+                "%" . @$_GET['oSearch'] . "%",
+                "%" . @$_GET['oSearch'] . "%",
+                "%" . @$_GET['oSearch'] . "%"
+            ));
             $itemCount = $stmt->fetch()['count'];
 
             //Then we process the data.
             self::$_oMaxPage = ceil($itemCount / self::$_oItemsPerPage);
             if(!is_numeric(self::$_oCurrentPage) || self::$_oCurrentPage > self::$_oMaxPage) self::$_oCurrentPage = 1; //This should stop any SQL Injection or messing with get values issues.
 
-            //Then we fetch data for the page that we need to show.
-            $stmt = Database::getConnection()->prepare("SELECT * FROM `orders` WHERE `name` LIKE ? LIMIT ?, ?");
-            $stmt->execute(array("%" . @$_GET['oSearch'] . "%", (self::$_oCurrentPage - 1) * self::$_oItemsPerPage, self::$_oItemsPerPage));
+            //Then we fetch data for the page that we need to show. (This Query is performance killer, but db is small so it'll do)
+            $stmt = Database::getConnection()->prepare("SELECT * FROM `orders` WHERE 
+                                                                `name` LIKE ? OR
+                                                                `surname` LIKE ? OR
+                                                                `email` LIKE ? OR
+                                                                `address` LIKE ? OR
+                                                                `phone` LIKE ? OR
+                                                                `additional` LIKE ?
+                                                                LIMIT ?, ?");
+            $stmt->execute(array(
+                "%" . @$_GET['oSearch'] . "%",
+                "%" . @$_GET['oSearch'] . "%",
+                "%" . @$_GET['oSearch'] . "%",
+                "%" . @$_GET['oSearch'] . "%",
+                "%" . @$_GET['oSearch'] . "%",
+                "%" . @$_GET['oSearch'] . "%",
+                (self::$_oCurrentPage - 1) * self::$_oItemsPerPage, 
+                self::$_oItemsPerPage
+            ));
 
             while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 array_push(self::$_oItems, new Order($row));
