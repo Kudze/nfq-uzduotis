@@ -29,12 +29,12 @@ class OrderManager {
 
             //We get product count from database (This Query is performance killer, but db is small so it'll do)
             $stmt = Database::getConnection()->prepare("SELECT COUNT(*) AS 'count' FROM `orders` WHERE 
-                                                                `name` LIKE ? OR
-                                                                `surname` LIKE ? OR
-                                                                `email` LIKE ? OR
-                                                                `address` LIKE ? OR
-                                                                `phone` LIKE ? OR
-                                                                `additional` LIKE ?
+                                                                LOWER(`name`) LIKE LOWER(?) OR
+                                                                LOWER(`surname`) LIKE LOWER(?) OR
+                                                                LOWER(`email`) LIKE LOWER(?) OR
+                                                                LOWER(`address`) LIKE LOWER(?) OR
+                                                                LOWER(`phone`) LIKE LOWER(?) OR
+                                                                LOWER(`additional`) LIKE LOWER(?)
                                                                 LIMIT 1");
             $stmt->execute(array(
                 "%" . @$_GET['oSearch'] . "%",
@@ -83,12 +83,12 @@ class OrderManager {
 
             //Then we fetch data for the page that we need to show. (This Query is performance killer, but db is small so it'll do)
             $stmt = Database::getConnection()->prepare("SELECT * FROM `orders` WHERE 
-                                                                `name` LIKE ? OR
-                                                                `surname` LIKE ? OR
-                                                                `email` LIKE ? OR
-                                                                `address` LIKE ? OR
-                                                                `phone` LIKE ? OR
-                                                                `additional` LIKE ? "
+                                                                LOWER(`name`) LIKE LOWER(?) OR
+                                                                LOWER(`surname`) LIKE LOWER(?) OR
+                                                                LOWER(`email`) LIKE LOWER(?) OR
+                                                                LOWER(`address`) LIKE LOWER(?) OR
+                                                                LOWER(`phone`) LIKE LOWER(?) OR
+                                                                LOWER(`additional`) LIKE LOWER(?) "
                                                                 //Because Those are hardcoded, we don't really need to use execute to protect agaisnt SQL Injection
                                                                  . ($orderAsked ? "ORDER BY `" . $orderWhichSQL . "` " . $orderTypeSQL . " " : "") . 
                                                                 "LIMIT ?, ?");
