@@ -38,7 +38,7 @@ class OrderManager {
 
             //Then we fetch data for the page that we need to show.
             $stmt = Database::getConnection()->prepare("SELECT * FROM `orders` WHERE `name` LIKE ? LIMIT ?, ?");
-            $stmt->execute(array("%" . @$_GET['oSearch'] . "%", 0, 20));
+            $stmt->execute(array("%" . @$_GET['oSearch'] . "%", (self::$_oCurrentPage - 1) * $itemsPerPage, $itemsPerPage));
 
             while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 array_push(self::$_oItems, new Order($row));
