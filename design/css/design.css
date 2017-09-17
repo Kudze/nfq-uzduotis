@@ -283,16 +283,21 @@ form h4 {
 
 }
 
-th {
-
-    vertical-align: middle !important;
-
+th a i {
+    margin-left: 10px;
 }
 
-td {
+th a
+{
+    color: #fff;
+    text-decoration: none;
+    white-space: nowrap;
+}
 
-    vertical-align: top !important;
-    
+th a:hover
+{
+    color: #fff;
+    text-decoration: none;
 }
 
 /* Misc */

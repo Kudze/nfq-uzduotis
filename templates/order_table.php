@@ -9,7 +9,7 @@
 
         <?php
             if(OrderManager::$_oMinPage <= OrderManager::$_oMaxPage) Page::_loadTemplate("order_table_real");
-            else echo '<br><center class="alert alert-danger">Produktai, tokiu pavadinimu nebuvo rasti!</center>';
+            else echo '<br><center class="alert alert-danger">Tokie užsakymai nebuvo rasti!</center>';
         ?>
 
 </center>

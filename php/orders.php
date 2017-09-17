@@ -52,6 +52,36 @@ class OrderManager {
             self::$_oMaxPage = ceil($itemCount / self::$_oItemsPerPage);
             if(!is_numeric(self::$_oCurrentPage) || self::$_oCurrentPage > self::$_oMaxPage) self::$_oCurrentPage = 1; //This should stop any SQL Injection or messing with get values issues.
 
+            //Lets process order part
+            $orderType = @$_GET['oOrType'];
+            if(!isset($orderType)) $orderType = 0;
+            $orderWhich = @$_GET['oOrWhich'];
+            if(!isset($orderWhich)) $orderWhich = 0;
+
+            $orderAsked = false;
+            $orderTypeSQL;
+            $orderWhichSQL;
+            if($orderType > 0 && $orderType <= 2 && $orderWhich > 1 && $orderWhich <= 7) {
+
+                $orderTypesSQL = array(
+                    1 => "ASC",
+                    2 => "DESC"
+                );
+                $orderCollumnsSQL= array(
+                    2 => "name",
+                    3 => "surname",
+                    4 => "email",
+                    5 => "phone",
+                    6 => "address",
+                    7 => "additional"
+                );
+
+                $orderTypeSQL = $orderTypesSQL[$orderType];
+                $orderWhichSQL = $orderCollumnsSQL[$orderWhich];
+
+                $orderAsked = true;
+            }
+
             //Then we fetch data for the page that we need to show. (This Query is performance killer, but db is small so it'll do)
             $stmt = Database::getConnection()->prepare("SELECT * FROM `orders` WHERE 
                                                                 `name` LIKE ? OR
@@ -59,8 +89,10 @@ class OrderManager {
                                                                 `email` LIKE ? OR
                                                                 `address` LIKE ? OR
                                                                 `phone` LIKE ? OR
-                                                                `additional` LIKE ?
-                                                                LIMIT ?, ?");
+                                                                `additional` LIKE ? "
+                                                                //Because Those are hardcoded, we don't really need to use execute to protect agaisnt SQL Injection
+                                                                 . ($orderAsked ? "ORDER BY `" . $orderWhichSQL . "` " . $orderTypeSQL . " " : "") . 
+                                                                "LIMIT ?, ?");
             $stmt->execute(array(
                 "%" . @$_GET['oSearch'] . "%",
                 "%" . @$_GET['oSearch'] . "%",
