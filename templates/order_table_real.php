@@ -66,6 +66,7 @@
 
 </ul>
 
+<center class="table-parent">
 <table class="table table-inverse">
     <thead>
         <tr>
@@ -87,3 +88,4 @@
         ?>
     </tbody>
 </table>
+</center>

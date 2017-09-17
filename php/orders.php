@@ -15,7 +15,7 @@ class OrderManager {
 
         //Then lets handle all the data from sql.
         self::$_oCurrentPage = @$_GET['oPage'];
-        self::$_oItemsPerPage = 12;
+        self::$_oItemsPerPage = 10;
         self::_fetchOrders();
 
         //And now we can render all of it.

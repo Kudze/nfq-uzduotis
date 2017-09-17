@@ -274,6 +274,15 @@ form h4 {
 
 }
 
+/* Tables */
+.table-parent {
+
+    max-width: 90%;
+    overflow-y: auto;
+    display: inline-block;
+
+}
+
 /* Misc */
 
 #orders-container {
