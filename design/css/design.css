@@ -275,6 +275,11 @@ form h4 {
 }
 
 /* Tables */
+
+.table {
+    margin-bottom: 0;
+}
+
 .table-parent {
 
     max-width: 90%;
